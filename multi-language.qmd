@@ -1,0 +1,66 @@
+---
+title: "scriptr multi-language test"
+filters:
+  - scriptr
+---
+
+## R chunk
+
+This chunk should be extracted to `scripts/r/summary.R`.
+
+```{r}
+#| filename: scripts/r/summary.R
+data <- c(1, 2, 3, 4, 5)
+
+summary(data)
+mean(data)
+sd(data)
+```
+
+## Python chunk
+
+This chunk should be extracted to `scripts/python/hello.py`. `python.reticulate:
+false` runs it via the plain system `python` interpreter instead of R's
+reticulate package, since this document already uses knitr (for the R chunk
+above) as its master engine.
+
+```{python}
+#| filename: scripts/python/hello.py
+#| python.reticulate: false
+def greet(name):
+    return f"Hello, {name}"
+
+print(greet("class"))
+```
+
+## SQL chunk
+
+This chunk should be extracted to `scripts/sql/query.sql`. SQL cell options
+use the `--|` comment prefix instead of `#|`.
+
+```{sql}
+--| filename: scripts/sql/query.sql
+--| eval: false
+SELECT name, count(*) AS n
+FROM students
+GROUP BY name
+ORDER BY n DESC;
+```
+
+## Control case: untagged chunks
+
+None of these should be extracted anywhere.
+
+```{r}
+1 + 1
+```
+
+```{python}
+#| python.reticulate: false
+print("not tagged")
+```
+
+```{sql}
+--| eval: false
+SELECT 1;
+```

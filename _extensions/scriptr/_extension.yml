@@ -1,0 +1,7 @@
+title: scriptr
+author: scriptr
+version: 0.1.0
+quarto-required: ">=1.2.0"
+contributes:
+  filters:
+    - scriptr.lua

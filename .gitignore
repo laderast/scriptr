@@ -1,0 +1,8 @@
+# Quarto render artifacts
+/.quarto/
+*.html
+*_files/
+*.knit.md
+
+# Output extracted by scriptr itself (regenerate with `quarto render`)
+/scripts/

@@ -1,0 +1,58 @@
+---
+title: "scriptr test document"
+filters:
+  - scriptr
+---
+
+## Week 1: Hello World
+
+This chunk should be extracted to `scripts/week1/hello.R`.
+
+```{r}
+#| filename: scripts/week1/hello.R
+print("Hello, world!")
+```
+
+## Week 1: A second script in the same folder
+
+This chunk should be extracted to `scripts/week1/greet.R`.
+
+```{r}
+#| filename: scripts/week1/greet.R
+greet <- function(name) {
+  paste("Hello,", name)
+}
+
+greet("class")
+```
+
+## Week 2: Nested path
+
+This chunk should be extracted to `scripts/week2/analysis/summary.R`, exercising
+creation of multiple nested directories.
+
+```{r}
+#| filename: scripts/week2/analysis/summary.R
+data <- c(1, 2, 3, 4, 5)
+
+summary(data)
+mean(data)
+sd(data)
+```
+
+## Control case: no filename attribute
+
+This chunk has no `filename` attribute and should NOT be extracted anywhere.
+
+```{r}
+x <- 1 + 1
+x
+```
+
+## Control case: non-R code block
+
+This chunk is not an R block and has no `filename`, so it should be left alone.
+
+```python
+print("this is python, not extracted")
+```
