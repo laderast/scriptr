@@ -1,5 +1,6 @@
 ---
 title: "scriptr multi-language test"
+format: revealjs
 filters:
   - scriptr
 ---
@@ -57,6 +58,20 @@ echo "hello"
 echo "world"
 ```
 
+## Observable JS chunk
+
+This chunk should be extracted to `scripts/ojs/data.js`. Observable JS is a
+Quarto-native engine (it runs in the bundled Deno/browser runtime, with no
+external interpreter), and its cell options use the `//|` comment prefix
+instead of `#|`, since JavaScript comments start with `//`.
+
+```{ojs}
+//| filename: scripts/ojs/data.js
+data = [1, 2, 3, 4, 5]
+
+mean = d3.mean(data)
+```
+
 ## Control case: untagged chunks
 
 None of these should be extracted anywhere.
@@ -77,4 +92,8 @@ SELECT 1;
 
 ```{bash}
 echo "not tagged"
+```
+
+```{ojs}
+1 + 1
 ```

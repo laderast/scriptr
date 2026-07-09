@@ -37,8 +37,24 @@ Running `quarto render` as usual will create any missing intermediate
 directories and write the cell's source to that path. Cells without a
 `filename` option are left alone.
 
-SQL cells use `--` for comments instead of `#`, so cell options there use a
-`--|` prefix instead of `#|`:
+### Any language
+
+scriptr is language- and engine-agnostic: it works for any executable cell
+Quarto knows how to render, because Quarto normalizes every engine's cells
+into the same internal shape before the filter runs. This has been verified
+for the knitr engine (R, Bash, `sh`, `zsh`, Python, SQL, Ruby, Perl,
+JavaScript/Node, CSS, …), the Jupyter engine (Python and other kernels),
+and Quarto-native Observable JS (`ojs`). Extraction depends only on the cell
+being echoed, not executed, so a tagged cell with `eval: false` is still
+written out.
+
+The only per-language wrinkle is the cell-option comment prefix, which
+follows the language's own line-comment characters (a Quarto/knitr
+convention, not something scriptr handles):
+
+- `#|` — R, Python, Bash, and most languages
+- `--|` — SQL, Lua, Haskell (comments start with `--`)
+- `//|` — Observable JS, JavaScript, CSS (comments start with `//`)
 
 ````
 ```{sql}
@@ -47,14 +63,22 @@ SELECT * FROM students;
 ```
 ````
 
+````
+```{ojs}
+//| filename: scripts/plot.js
+data = [1, 2, 3]
+```
+````
+
 ## Examples
 
 - `test.qmd` — R-only example, including a chunk with multiple auto-printed
   statements to exercise reassembly of a cell whose source knitr splits
   across several output blocks.
-- `multi-language.qmd` — one R, Python, SQL, and Bash cell, each tagged
-  with `filename`, alongside an untagged control cell per language to show
-  they're left untouched.
+- `multi-language.qmd` — one R, Python, SQL, Bash, and Observable JS cell,
+  each tagged with `filename`, alongside an untagged control cell per
+  language to show they're left untouched. The `ojs` cell also exercises
+  the `//|` comment prefix and the Quarto-native (non-knitr) engine.
 
 ## Running tests
 
