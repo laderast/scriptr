@@ -6,3 +6,5 @@
 
 # Output extracted by scriptr itself (regenerate with `quarto render`)
 /scripts/
+
+**/*.quarto_ipynb

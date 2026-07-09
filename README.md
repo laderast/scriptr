@@ -52,9 +52,20 @@ SELECT * FROM students;
 - `test.qmd` — R-only example, including a chunk with multiple auto-printed
   statements to exercise reassembly of a cell whose source knitr splits
   across several output blocks.
-- `multi-language.qmd` — one R, one Python, and one SQL cell, each tagged
+- `multi-language.qmd` — one R, Python, SQL, and Bash cell, each tagged
   with `filename`, alongside an untagged control cell per language to show
   they're left untouched.
+
+## Running tests
+
+```
+tests/run-tests.sh
+```
+
+This renders each example above in an isolated temp directory and diffs the
+extracted `scripts/` tree against the checked-in output in
+`tests/expected/`. Pass one or more fixture names to run a subset, e.g.
+`tests/run-tests.sh test`.
 
 ## How it works
 

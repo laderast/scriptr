@@ -47,6 +47,16 @@ GROUP BY name
 ORDER BY n DESC;
 ```
 
+## Bash chunk
+
+This chunk should be extracted to `scripts/bash/hello.sh`.
+
+```{bash}
+#| filename: scripts/bash/hello.sh
+echo "hello"
+echo "world"
+```
+
 ## Control case: untagged chunks
 
 None of these should be extracted anywhere.
@@ -63,4 +73,8 @@ print("not tagged")
 ```{sql}
 --| eval: false
 SELECT 1;
+```
+
+```{bash}
+echo "not tagged"
 ```
