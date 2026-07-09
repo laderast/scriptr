@@ -9,9 +9,18 @@ the versions embedded in the notes.
 
 ## Installing
 
-Copy the `_extensions/scriptr` directory into your Quarto project (this is
-the standard way to install a Quarto extension that hasn't been published
-to a registry).
+From the root of your Quarto project, run:
+
+```
+quarto add laderast/scriptr
+```
+
+This downloads the extension into `_extensions/scriptr` in your project.
+Commit that directory alongside your project so collaborators get the
+extension too. To update later, re-run the same command.
+
+(Alternatively, you can copy the `_extensions/scriptr` directory into your
+project by hand — the CLI command just automates that.)
 
 ## Using scriptr
 
